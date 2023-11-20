@@ -1,9 +1,10 @@
+using Assets.Scripts.Abtractions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Concretes.Managers
 {
-    public class GameStateManager : Singleton<GameStateManager>
+    public class GameStateManager : MonoBehaviour
     {
 
         public void PauseGame()

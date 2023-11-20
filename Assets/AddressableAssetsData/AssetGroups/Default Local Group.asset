@@ -29,11 +29,89 @@ MonoBehaviour:
     m_SerializedLabels:
     - UIStart
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8eb29af494e10ac48a0ae1d9599e0b90
-    m_Address: Assets/DataResources/Prefabs/Scenes/BoxSelectCars.prefab
+  - m_GUID: d603584ea9d0d7640b3841486040f30b
+    m_Address: Assets/DataResources/Prefabs/Scenes/BoxSelectCar
     m_ReadOnly: 0
     m_SerializedLabels:
-    - BoxSelectCars
+    - BoxesSelectCar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ea2439a033c57d46be460af6e9d9242
+    m_Address: Assets/DataResources/Prefabs/Scenes/TextTitleSelectCar.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TitleSelectCar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd40a533ec0cc5343b877f257af80b85
+    m_Address: Assets/DataResources/Prefabs/Scenes/LightSelectCar.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LightSelectCar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f438b5e7d2796434bbd6fe57fd9a7ed5
+    m_Address: Assets/DataResources/Prefabs/Scenes/BackgroundSelectCar.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BackgroundSelectCar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6d4f81b790c1564d9f68fe73fbb770e
+    m_Address: Assets/DataResources/BE.GP01_SoundEffects/AudiochoicedCar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - AudioChoicedCar
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5adbdc14f4b8bc498853158f825c0e6
+    m_Address: Assets/DataResources/Prefabs/Scenes/CarPlay
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CarsPlay
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8de37aab4dc923b4ea62e96ea53220d3
+    m_Address: Assets/DataResources/Prefabs/Scenes/StartLine.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - StartLine
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4aa24e8712f910045a3fdcf845eea7af
+    m_Address: Assets/DataResources/Prefabs/Scenes/CountdownAni.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CountDownAni
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2353bed625020164ab3d07b860a29841
+    m_Address: Assets/DataResources/BE.GP01_SoundEffects/AudienceVoice
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - AudienceVoice
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e293fcfc3be06e648a84f3ef8faeb52d
+    m_Address: Assets/DataResources/BE.GP01_SoundEffects/AudioSpeech
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - AudioSpeech
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f27c462d28d01fb449c5c2babcbf324e
+    m_Address: Assets/DataResources/Prefabs/Scenes/Referee.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RefereeAni
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e818a85ff6600c4468934c35336575d0
+    m_Address: Assets/DataResources/Prefabs/Scenes/HandClick.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - HandClick
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 53209062d96bce94391cbf42bd58ceca
+    m_Address: Assets/DataResources/Prefabs/Entities/Alphabet/Ball
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - BallText
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f922501d06ffa5242b6142837844f4fc
+    m_Address: Assets/DataResources/Prefabs/Entities/Alphabet/Jam
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - JamText
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 23cde35e85879f64ea6c2957d9d7aed1, type: 2}

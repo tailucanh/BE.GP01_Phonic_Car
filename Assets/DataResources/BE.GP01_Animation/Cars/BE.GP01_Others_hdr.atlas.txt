@@ -26,14 +26,14 @@ repeat: none
   offset: 0, 0
   index: -1
 Banh_xe_nho
-  rotate: false
+  rotate: true
   xy: 330, 13
   size: 142, 143
   orig: 142, 143
   offset: 0, 0
   index: -1
 Banh_xe_to
-  rotate: false
+  rotate: true
   xy: 1710, 52
   size: 169, 169
   orig: 169, 169

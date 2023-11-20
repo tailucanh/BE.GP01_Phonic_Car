@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: a8585a144deacda46b86821175f3e104
   m_CachedHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 829adfb8c8a1a9c427d6314b3b72953b
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -89,7 +89,21 @@ MonoBehaviour:
     - default
     - BackgroundStart
     - UIStart
-    - BoxSelectCars
+    - BoxesSelectCar
+    - TitleSelectCar
+    - LightSelectCar
+    - BackgroundSelectCar
+    - AudioChoicedCar
+    - AudioClickSelect
+    - CarsPlay
+    - StartLine
+    - CountDownAni
+    - AudienceVoice
+    - AudioSpeech
+    - RefereeAni
+    - HandClick
+    - BallText
+    - JamText
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 79a0efcde92af8945b497735775e028a, type: 2}

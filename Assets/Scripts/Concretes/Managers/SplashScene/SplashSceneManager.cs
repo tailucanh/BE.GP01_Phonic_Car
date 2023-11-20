@@ -5,27 +5,23 @@ namespace Assets.Scripts.Concretes.Managers
 {
     public class SplashSceneManager : Manager
     {
-        private SpawnBackgroundSplash spawnBackground;
-        private SpawnUIBackgroundSplash spawnUI;
+        private SpawnObjectAddressables spawnBackground;
+        private SpawnObjectAddressables spawnUI;
 
 
         private void Awake() 
         {
             spawnBackground = GetComponentInChildren<SpawnBackgroundSplash>();
             spawnUI = GetComponentInChildren<SpawnUIBackgroundSplash>();
-            GetData();
+            AdjustObjects();
         }
 
         public override void AdjustObjects()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public override void GetData()
-        {
             spawnBackground.SpawnObjectState();
             spawnUI.SpawnObjectState();
         }
+
 
     }
 }
