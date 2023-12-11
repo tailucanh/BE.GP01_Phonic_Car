@@ -14,7 +14,6 @@ namespace Assets.Scripts.Concretes.Controllers
         protected float elapsedTime = 0f;
         protected Rigidbody2D rb;
         protected BoxCollider2D boxCollider;
-        protected Camera mainCamera;
 
         protected void Start()
         {

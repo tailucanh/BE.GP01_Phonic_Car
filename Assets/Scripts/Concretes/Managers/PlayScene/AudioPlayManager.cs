@@ -6,7 +6,6 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Utilities;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Assets.Scripts.Concretes.Managers
@@ -45,9 +44,17 @@ namespace Assets.Scripts.Concretes.Managers
         {
             playingObjectSfx.PlaySfx(MainSource, audioClip);
         }
+
+        public void PlaySfx(AudioSource audioSource, AudioClip audioClip)
+        {
+            playingObjectSfx.PlaySfx(audioSource, audioClip);
+        }
+
+
         public void PlaySfx(AudioSource hostSource,List<AudioClip> audioClips, EnumAudienceVoice clipEnum)
         {
-            string description =EnumHelper.GetDescription(clipEnum);
+            hostSource.loop = false;
+            string description = GameHelper.GetDescription(clipEnum);
             foreach (var audioClip in audioClips)
             {
                 if (audioClip.name == description)
@@ -61,7 +68,7 @@ namespace Assets.Scripts.Concretes.Managers
 
         public void PlaySfx(EnumSpeechAudio clipEnum)
         {
-            string description = EnumHelper.GetDescription(clipEnum);
+            string description = GameHelper.GetDescription(clipEnum);
             foreach (var audioClip in speechesAudio)
             {
                 if (audioClip.name == description)

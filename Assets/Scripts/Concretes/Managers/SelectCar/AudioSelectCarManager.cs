@@ -2,6 +2,7 @@
 using Assets.Scripts.Concretes.Controllers;
 using Assets.Scripts.Implementations;
 using Assets.Scripts.Interfaces;
+using Assets.Scripts.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,11 +70,11 @@ namespace Assets.Scripts.Concretes.Managers
 
         public IEnumerator LoadSceneAfterAudioPlay(int scene)
         {
-            yield return GetDelayWhile(() => MainSource.isPlaying);
-            yield return GetDelaySecond(0.2f);
-            StartCoroutine(BoxSelectCarManager.Instance.FadeAndLoadScene(scene));
+            yield return CoroutineHelper.WaitInWhile(() => MainSource.isPlaying);
+            yield return wait0_2.Wait();
+            SceneLoader.Instance.LoadScene(scene);
         }
-
+         
 
 
     }

@@ -5,7 +5,7 @@ namespace Assets.Scripts.Enums
 {
     enum EnumSlectCart
     {
-        KeySelected,
+     
 
         [Description("Xe hong_Chon")]
         PinkCar,
@@ -16,13 +16,13 @@ namespace Assets.Scripts.Enums
         [Description("Xe xanh_Chon")]
         BlueCar,
 
-        [Description("Xe hong_0")]
+        [Description("Xe hong_")]
         PinkCarSelect,
 
-        [Description("Xe cam_0")]
+        [Description("Xe cam_")]
         OrangeCarSelect,
 
-        [Description("Xe xanh_0")]
+        [Description("Xe xanh_")]
         BlueCarSelect,
 
     }

@@ -14,16 +14,17 @@ namespace Assets.Scripts.Concretes.Controllers
         [SerializeField] protected AssetLabelReference assetLabelReference;
         private List<GameObject> listsCar = new List<GameObject>();
 
-        private List<string> animationList = new List<string>
+        private List<string> animationList = new()
         {
-            EnumHelper.GetDescription(EnumSlectCart.PinkCarSelect),
-            EnumHelper.GetDescription(EnumSlectCart.OrangeCarSelect),
-            EnumHelper.GetDescription(EnumSlectCart.BlueCarSelect)
+            GameHelper.GetDescription(EnumSlectCart.PinkCarSelect),
+            GameHelper.GetDescription(EnumSlectCart.OrangeCarSelect),
+            GameHelper.GetDescription(EnumSlectCart.BlueCarSelect)
         };
 
         public override void SpawnObjectState()
         {
-            string playerAnimation = PlayerPrefs.GetString(EnumSlectCart.KeySelected.ToString());
+            string playerAnimation = GameHelper.GetString(EnumPlayerPrefs.CarSelected.ToString());
+            playerAnimation = string.Concat(playerAnimation, "0-1");
             Debug.Log(playerAnimation);
             Addressables.LoadAssetsAsync<GameObject>(assetLabelReference, (itemObj) =>
             {
@@ -37,8 +38,6 @@ namespace Assets.Scripts.Concretes.Controllers
                 {
                     GameObject itemObj = items[i];
                     GameObject spawnedObject = Instantiate(itemObj);
-                    spawnedObject.AddComponent<PlayerCarInput>();
-                
                     listsCar.Add(spawnedObject);
                     spawnedObject.transform.SetParent(gameObject.transform);
 
@@ -46,30 +45,32 @@ namespace Assets.Scripts.Concretes.Controllers
                     string selectedAnimation = animationList[randomIndex];
                     animationList.RemoveAt(randomIndex);
                     spawnedObject.GetComponentInChildren<SkeletonAnimation>().AnimationState
-                        .SetAnimation(0, selectedAnimation, true);
+                        .SetAnimation(0, string.Concat(selectedAnimation, "0-1"), true);
 
                     if (spawnedObject.GetComponentInChildren<SkeletonAnimation>().AnimationName == playerAnimation)
                     {
                         spawnedObject.tag = "Player";
-                        spawnedObject.GetComponentInChildren<PlayerCarInput>().UseBot = true;
+                        spawnedObject.AddComponent<PlayerCarState>();
                         spawnedObject.AddComponent<MoveableCarPlay>();
+                        spawnedObject.AddComponent<AnimationWheelBoneState>();
+                        spawnedObject.GetComponent<PlayerCarState>().UsePlayer = true;
                         spawnedObject.AddComponent<Rigidbody2D>();
-                        spawnedObject.GetComponent<Rigidbody2D>().simulated = false;
-                        PlayerPrefs.DeleteKey(EnumSlectCart.KeySelected.ToString());
+                        spawnedObject.GetComponent<Rigidbody2D>().isKinematic = true;
                     }
                     else
                     {
+                        spawnedObject.AddComponent<BotCarState>();
                         spawnedObject.AddComponent<MoveableCarBot>();
                     }
                 }
             };
         }
      
-
         public List<GameObject> GetListsCar()
         {
             return listsCar;
         }
+
 
         public override void DesSpawnObjectState()
         {

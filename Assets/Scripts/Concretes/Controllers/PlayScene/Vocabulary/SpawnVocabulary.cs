@@ -1,28 +1,30 @@
-﻿
-using Assets.Scripts.Abtractions;
+﻿using Assets.Scripts.Abtractions;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using UnityEngine;
-using Assets.Scripts.Enums;
-using Spine.Unity;
 using System.Linq;
+using Assets.Scripts.Utilities;
+using Assets.Scripts.Enums;
 
 namespace Assets.Scripts.Concretes.Controllers
 {
     internal class SpawnVocabulary : SpawnObjectAddressables
     {
-        [SerializeField] protected AssetLabelReference assetLabelVocabulary;
-        private List<GameObject> listVocabularies = new List<GameObject>();
-        private List<AudioClip> listAudioText = new List<AudioClip>();
+        [SerializeField] protected List<AssetLabelReference> listLabels;
+        private List<GameObject> listVocabularies = new();
+        private List<AudioClip> listAudioText = new();
+        private int leverSelected = 0;
 
         public override void SpawnObjectState()
         {
-            Addressables.LoadAssetsAsync<AudioClip>(assetLabelVocabulary, (itemObj) =>
+            leverSelected = GameHelper.GetInt(EnumPlayerPrefs.VocabularyLever.ToString());
+
+            Addressables.LoadAssetsAsync<AudioClip>(listLabels[leverSelected], (itemObj) =>
             {
                 listAudioText.Add(itemObj);
             });
 
-            Addressables.LoadAssetsAsync<GameObject>(assetLabelVocabulary, (itemObj) =>
+            Addressables.LoadAssetsAsync<GameObject>(listLabels[leverSelected], (itemObj) =>
             {
 
             }).Completed += (operationHandle) =>
@@ -33,10 +35,16 @@ namespace Assets.Scripts.Concretes.Controllers
                 {
                     GameObject itemObj = items[i];
                     GameObject spawnedObject = Instantiate(itemObj);
+                    spawnedObject.AddComponent<MoveableVocabularyItem>();
+                    spawnedObject.AddComponent<ColliderVocabularyState>();
+                    spawnedObject.AddComponent<MissedVocabularyState>();
 
+                    GameObject childObject = spawnedObject.transform.GetChild(0).gameObject;
+                    childObject.AddComponent<FadeInVocabulary>();
+          
                     listVocabularies.Add(spawnedObject);
                     spawnedObject.transform.SetParent(gameObject.transform);
-
+                    childObject.GetComponent<VocabularyState>().PerformState();
                 }
             };
            

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Utilities;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Concretes.Controllers
@@ -11,9 +12,7 @@ namespace Assets.Scripts.Concretes.Controllers
             moveDuration = 0.5f;
             rb = GetComponent<Rigidbody2D>();
             startPosition = transform.position;
-            mainCamera = Camera.main;
-            float cameraCenterY = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, mainCamera.nearClipPlane)).y;
-
+            float cameraCenterY = GameHelper.GetMiddleY();
             targetPosition = new Vector3(transform.position.x, cameraCenterY - 0.8f, 0f);
         }
         public override IEnumerator Sequence()

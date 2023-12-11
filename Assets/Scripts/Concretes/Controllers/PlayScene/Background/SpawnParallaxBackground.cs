@@ -1,59 +1,64 @@
 ﻿using Assets.Scripts.Abtractions;
-using Assets.Scripts.Concretes.Controllers;
 using Assets.Scripts.Concretes.Managers;
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts.Interfaces;
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
-public class SpawnParallaxBackground : SpawnObjectAddressables
+namespace Assets.Scripts.Concretes.Controllers
 {
-    [SerializeField] protected GameObject back1;
-    [SerializeField] protected GameObject back2;
-    private float speedNormal = 3.5f;
-    private AudioSource audioSource;
-
-    private void Awake()
+    public class SpawnParallaxBackground : SpawnObjectAddressables, ISpeedable
     {
-        audioSource = GetComponent<AudioSource>();
-    }
+        [SerializeField] protected GameObject back1;
+        [SerializeField] protected GameObject back2;
+        private AudioSource audioSource;
+        public float Speed { get; set; }
 
-    public override void SpawnObjectState()
-    {
-
-        MoveBackground(back1, speedNormal);
-        MoveBackground(back2, speedNormal);
-    }
-
-    protected void MoveBackground(GameObject background, float speed)
-    {
-        Vector3 currentPosition = background.transform.position;
-        Vector3 newPosition = new Vector3(currentPosition.x - speed * Time.deltaTime, currentPosition.y, currentPosition.z);
-
-        background.transform.position = newPosition;
-
-        SpriteRenderer spriteRenderer = background.GetComponent<SpriteRenderer>();
-        float backgroundWidth = spriteRenderer.bounds.size.x;
-
-        if (currentPosition.x + backgroundWidth / 2f < Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect)
+        private void Awake()
         {
-            float offset = backgroundWidth * 1.8f; 
-            background.transform.position = new Vector3(currentPosition.x + offset, currentPosition.y, currentPosition.z);
+            audioSource = GetComponent<AudioSource>();
         }
-    }
 
-    public void StartAudioBackground()
-    {
-        AudioPlayManager.Instance.PlaySfx(audioSource);
-    }
-    public void StopAudioBackground()
-    {
-        AudioPlayManager.Instance.StopSfx(audioSource);
-    }
+        public void SetSpeed(float value)
+        {
+            Speed = value;
+        } 
 
+        public override void SpawnObjectState()
+        {
+            MoveBackground(back1, Speed);
+            MoveBackground(back2, Speed);
+        }
 
-    public override void DesSpawnObjectState()
-    {
-        throw new System.NotImplementedException();
+        protected void MoveBackground(GameObject background, float speed)
+        {
+            Vector3 currentPosition = background.transform.position;
+            Vector3 newPosition = new(currentPosition.x - speed * Time.deltaTime, currentPosition.y, currentPosition.z);
+
+            background.transform.position = newPosition;
+
+            SpriteRenderer spriteRenderer = background.GetComponent<SpriteRenderer>();
+            float backgroundWidth = spriteRenderer.bounds.size.x;
+
+            if (currentPosition.x + backgroundWidth / 2f < Camera.main.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect)
+            {
+                float offset = backgroundWidth * 1.8f;
+                background.transform.position = new Vector3(currentPosition.x + offset, currentPosition.y, currentPosition.z);
+            }
+        }
+
+        public void StartAudioBackground()
+        {
+            AudioPlayManager.Instance.PlaySfx(audioSource);
+        }
+        public void StopAudioBackground()
+        {
+            AudioPlayManager.Instance.StopSfx(audioSource);
+        }
+
+        public override void DesSpawnObjectState()
+        {
+            throw new System.NotImplementedException();
+        }
+
+       
     }
 }

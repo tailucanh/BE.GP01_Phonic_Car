@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Utilities;
 using System.Collections;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
@@ -15,9 +16,8 @@ namespace Assets.Scripts.Concretes.Controllers
             rb = GetComponent<Rigidbody2D>();
             boxCollider = GetComponent<BoxCollider2D>();
             startPosition = transform.position;
-            mainCamera = Camera.main;
             float colliderHeight = boxCollider.bounds.size.y;
-            float cameraBottomY = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 0f, mainCamera.nearClipPlane)).y;
+            float cameraBottomY = GameHelper.GetCameraBottomBound();
             targetPosition = new Vector3(transform.position.x, cameraBottomY + colliderHeight / 2, 0f);
 
         }

@@ -3,7 +3,7 @@ using Assets.Scripts.Concretes.Managers;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Utilities;
-using System;
+using Spine.Unity;
 using UnityEngine;
 
 namespace Assets.Scripts.Concretes.Controllers
@@ -11,12 +11,18 @@ namespace Assets.Scripts.Concretes.Controllers
     public class ClickableCarObject : ClickableObject
     {
         private AudioSource _audioSource;
-        private IAnimationSelect _animationSelect;
         private bool hasBeenClicked = false;
+        private SkeletonAnimation skeletonAnimation;
+
         private void Start()
         {
             _audioSource = GetComponent<AudioSource>();
-            _animationSelect = GetComponent<IAnimationSelect>();
+
+            if (!TryGetComponent<SkeletonAnimation>(out skeletonAnimation))
+            {
+                Debug.LogError("SkeletonAnimation component not found!");
+                return;
+            }
         }
 
         private void OnMouseDown()
@@ -32,14 +38,10 @@ namespace Assets.Scripts.Concretes.Controllers
         {
             if (IsClickAble)
             {
+                StartCoroutine(BoxSelectCarManager.Instance.OnClickableCar());
                 PlayEffect();
-                StartCoroutine(BoxSelectCarManager.Instance.MoveAndScaleObjectsRoutine());
-                TitleSelectCarManager.Instance.FadeOutText();
-                LightSelectedCarManager.Instance.AdjustObjects();
-                AudioSelectCarManager.Instance.RandomAudioSelectedCar();
-                PlayerPrefs.SetString(EnumSlectCart.KeySelected.ToString(),GetAnimationResult(_animationSelect.GetAnimation()));
-                StartCoroutine(AudioSelectCarManager.Instance.LoadSceneAfterAudioPlay(2));
-
+                GameHelper.SetString(EnumPlayerPrefs.CarSelected.ToString(),
+                    GetAnimationResult(skeletonAnimation.AnimationState.GetCurrent(0).Animation.Name));
             }
         }
 
@@ -50,12 +52,12 @@ namespace Assets.Scripts.Concretes.Controllers
         private string GetAnimationResult(string currentAnimationKey)
         {
 
-            if(currentAnimationKey.Equals(EnumHelper.GetDescription(EnumSlectCart.PinkCar)))
-                return EnumHelper.GetDescription(EnumSlectCart.PinkCarSelect);
-            if(currentAnimationKey.Equals(EnumHelper.GetDescription(EnumSlectCart.OrangeCar)))
-                return EnumHelper.GetDescription(EnumSlectCart.OrangeCarSelect);
-            if(currentAnimationKey.Equals(EnumHelper.GetDescription(EnumSlectCart.BlueCar))) 
-                return EnumHelper.GetDescription(EnumSlectCart.BlueCarSelect);
+            if(currentAnimationKey.Equals(GameHelper.GetDescription(EnumSlectCart.PinkCar)))
+                return GameHelper.GetDescription(EnumSlectCart.PinkCarSelect);
+            if(currentAnimationKey.Equals(GameHelper.GetDescription(EnumSlectCart.OrangeCar)))
+                return GameHelper.GetDescription(EnumSlectCart.OrangeCarSelect);
+            if(currentAnimationKey.Equals(GameHelper.GetDescription(EnumSlectCart.BlueCar))) 
+                return GameHelper.GetDescription(EnumSlectCart.BlueCarSelect);
             return "";
           
         }

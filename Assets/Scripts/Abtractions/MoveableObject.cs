@@ -8,6 +8,7 @@ namespace Assets.Scripts.Abtractions
     public abstract class MoveableObject : MonoBehaviour
     {
         protected IMovingObject _movingObject;
+        public bool IsSmoothness { get; set; }
         private void Awake()
         {
             _movingObject = new MovingObject();
@@ -15,16 +16,8 @@ namespace Assets.Scripts.Abtractions
      
         public abstract IEnumerator MoveObject(Vector3 destination, float speedTime);
         public abstract IEnumerator ScaleObject(Vector3 toScale, float speedTime);
-
-        protected void CollisionConversion(bool isSimulated)
-        {
-            Rigidbody2D[] rbs = gameObject.GetComponentsInChildren<Rigidbody2D>();
-
-            foreach (var chilđ in rbs)
-            {
-                chilđ.simulated = isSimulated;
-            }
-        }
+  
+      
 
     }
 }

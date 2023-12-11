@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Abtractions;
+using Assets.Scripts.Interfaces;
 using UnityEngine;
 
 namespace Assets.Scripts.Implementations
@@ -11,12 +12,12 @@ namespace Assets.Scripts.Implementations
             _object.transform.position = Vector3.Lerp(current, destination, speed);
         }
 
-      
+
+
         public void Scale(MoveableObject _object, Vector3 toScale, float speed)
         {
             Vector3 currentScale = _object.transform.localScale;
             _object.transform.localScale = Vector3.Lerp(currentScale, toScale, speed);
         }
-
     }
 }

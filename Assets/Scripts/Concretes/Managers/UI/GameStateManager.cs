@@ -1,11 +1,18 @@
 using Assets.Scripts.Abtractions;
+using Assets.Scripts.Enums;
+using Assets.Scripts.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Concretes.Managers
 {
-    public class GameStateManager : MonoBehaviour
+    public class GameStateManager : Manager
     {
+
+        public void SelectLeverGame(int lever)
+        {
+            GameHelper.SetInt(EnumPlayerPrefs.VocabularyLever.ToString(), lever);
+        }
 
         public void PauseGame()
         {
@@ -31,6 +38,11 @@ namespace Assets.Scripts.Concretes.Managers
         {
             Application.Quit();
 
+        }
+
+        public override void AdjustObjects()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

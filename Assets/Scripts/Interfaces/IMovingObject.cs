@@ -2,7 +2,7 @@
 using Assets.Scripts.Abtractions;
 using UnityEngine;
 
-namespace Assets.Scripts.Implementations
+namespace Assets.Scripts.Interfaces
 {
     public interface IMovingObject
     {

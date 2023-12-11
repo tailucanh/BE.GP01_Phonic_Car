@@ -1,8 +1,5 @@
 using Assets.Scripts.Abtractions;
 using Assets.Scripts.Concretes.Controllers;
-using Assets.Scripts.Concretes.Controllers.SeclectCar.TextTitle;
-using Assets.Scripts.Utilities;
-using UnityEngine;
 
 namespace Assets.Scripts.Concretes.Managers
 {

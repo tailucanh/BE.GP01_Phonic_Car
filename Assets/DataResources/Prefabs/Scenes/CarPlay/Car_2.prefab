@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2259118055448126058}
   - component: {fileID: 2259118055448126061}
   - component: {fileID: 2291265224814020257}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Car_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,12 +28,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2259118055448126063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.37, y: -1.5, z: 0}
+  m_LocalPosition: {x: -5.85, y: -1.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2259118055448126059
 MeshFilter:
@@ -81,9 +81,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -424685489
-  m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingLayerID: -1499831201
+  m_SortingLayer: 2
+  m_SortingOrder: 4
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2259118055448126061
 MonoBehaviour:
@@ -132,10 +132,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2872002, y: 1.6996001}
+  m_Offset: {x: -0.61, y: 1.6996001}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -146,5 +146,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.3744, y: 4.3614}
+  m_Size: {x: 7.13, y: 3.82}
   m_EdgeRadius: 0

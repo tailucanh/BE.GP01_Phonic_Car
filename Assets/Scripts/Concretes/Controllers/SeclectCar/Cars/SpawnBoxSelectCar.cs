@@ -17,11 +17,13 @@ namespace Assets.Scripts.Concretes.Controllers
         private List<GameObject> listBoxsCar = new List<GameObject>();
         private List<string> animationList = new List<string>
         {
-            EnumHelper.GetDescription(EnumSlectCart.PinkCar),
-            EnumHelper.GetDescription(EnumSlectCart.OrangeCar),
-            EnumHelper.GetDescription(EnumSlectCart.BlueCar)
+            GameHelper.GetDescription(EnumSlectCart.PinkCar),
+            GameHelper.GetDescription(EnumSlectCart.OrangeCar),
+            GameHelper.GetDescription(EnumSlectCart.BlueCar)
         };
         private AudioSource _audioSource;
+        private float wait0_5 = 0.5f;
+
         public override void SpawnObjectState()
         {
             Addressables.LoadAssetsAsync<GameObject>(assetLabelReference, (itemObj) =>
@@ -43,13 +45,12 @@ namespace Assets.Scripts.Concretes.Controllers
             {
                 GameObject itemObj = items[i];
                 GameObject spawnedObject = Instantiate(itemObj);
-                spawnedObject.AddComponent<MoveableCarObject>();
+                spawnedObject.AddComponent<MoveableCarSelect>();
                 listBoxsCar.Add(spawnedObject);
                 _audioSource = spawnedObject.GetComponent<AudioSource>();
-                AddComponentsToChildrenWithTag(spawnedObject, "Car", typeof(PushUpCar));
-                AddComponentsToChildrenWithTag(spawnedObject, "Car", typeof(ScaleObjectCollision));
-                AddComponentsToChildrenWithTag(spawnedObject, "Car", typeof(AnimationCarSelectedState));
-                AddComponentsToChildrenWithTag(spawnedObject, "Pedestal", typeof(PushUpPedestal));
+                GameHelper.AddComponentsToChildrenWithTag(spawnedObject, "Car", typeof(PushUpCar));
+                GameHelper.AddComponentsToChildrenWithTag(spawnedObject, "Car", typeof(ScaleObjectCollision));
+                GameHelper.AddComponentsToChildrenWithTag(spawnedObject, "Pedestal", typeof(PushUpPedestal));
               
                 spawnedObject.transform.SetParent(gameObject.transform);
                 int randomIndex = Random.Range(0, animationList.Count);
@@ -58,30 +59,15 @@ namespace Assets.Scripts.Concretes.Controllers
                 spawnedObject.GetComponentInChildren<SkeletonAnimation>().AnimationState
                     .SetAnimation(0, selectedAnimation, true);
               
-                yield return new WaitForSeconds(delay);
+                yield return delay.Wait();
                 AudioSelectCarManager.Instance.PlaySfx(_audioSource);
-                AddComponentsToChildrenWithTag(spawnedObject, "Car", typeof(ClickableCarObject));
+                GameHelper.AddComponentsToChildrenWithTag(spawnedObject, "Car", typeof(ClickableCarObject));
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return wait0_5.Wait();
             TitleSelectCarManager.Instance.AdjustObjects();
         }
 
-       protected void AddComponentsToChildrenWithTag(GameObject gameObject,string name, params System.Type[] componentTypes)
-        {
-            Transform[] childTransforms = gameObject.GetComponentsInChildren<Transform>();
-
-            foreach (var childTransform in childTransforms)
-            {
-                if (childTransform.name.Equals(name))
-                {
-                    foreach (var componentType in componentTypes)
-                    {
-                        childTransform.gameObject.AddComponent(componentType);
-                    }
-                }
-            }
-        }
-
+      
         public List<GameObject> GetListBoxsCar()
         {
             return listBoxsCar;

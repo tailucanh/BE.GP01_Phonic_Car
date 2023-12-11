@@ -2,65 +2,63 @@
 using Assets.Scripts.Utilities;
 using Spine;
 using Spine.Unity;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Concretes.Controllers
 {
     [RequireComponent(typeof(SkeletonAnimation))]
-    public class AnimationWheelBoneState : CarPlayState
+    public class AnimationWheelBoneState : CarState
     {
-        private SkeletonAnimation skeletonAnimation;
         private Bone smallWheelBone;
         private Bone largeWheelBone;
         public float rotationSpeed = 360f;
 
         private void Awake()
         {
-            skeletonAnimation = GetComponent<SkeletonAnimation>();
-            if (skeletonAnimation == null)
+            if (!TryGetComponent<SkeletonAnimation>(out skeletonAnimation))
             {
                 Debug.LogError("SkeletonAnimation is not assigned!");
                 return;
             }
-            smallWheelBone = skeletonAnimation.Skeleton.FindBone(EnumHelper.GetDescription(EnumWheelBone.WheelBoneSmall));
-            largeWheelBone = skeletonAnimation.Skeleton.FindBone(EnumHelper.GetDescription(EnumWheelBone.WheelBoneLager)) ;
+            smallWheelBone = skeletonAnimation.Skeleton.FindBone(GameHelper.GetDescription(EnumWheelBone.WheelBoneSmall));
+            largeWheelBone = skeletonAnimation.Skeleton.FindBone(GameHelper.GetDescription(EnumWheelBone.WheelBoneLager)) ;
 
             if (smallWheelBone == null || largeWheelBone == null)
             {
                 Debug.LogError("One or more wheel bones not found!");
             }
         }
-      /* private void Start()
-        {
-            StartCoroutine(Sequence());
-        }*/
-        private void Update()
-        {
-            float step = (rotationSpeed * Time.time);
-            smallWheelBone.Rotation += step;
-            smallWheelBone.X += 0.1f;
-        }
 
-        public override IEnumerator Sequence()
+      
+        public override IEnumerator SequenceState()
         {
             while (true)
             {
-                // Điều chỉnh tốc độ quay theo thời gian để có hiệu ứng mượt mà
-                float step = (rotationSpeed * Time.time );
-                smallWheelBone.Rotation += step;
-                smallWheelBone.X += 0.1f;
-                Debug.Log(smallWheelBone.Rotation);
+                if (smallWheelBone != null && largeWheelBone != null)
+                {
+                    float rotationSpeed = 180f; // Adjust the speed of rotation as needed
+                    smallWheelBone.Rotation += Time.deltaTime * rotationSpeed;
+                    Debug.Log(smallWheelBone.Rotation);
+                }
 
-                // Chờ một frame tiếp theo
                 yield return null;
             }
         }
-      
+
+        private void RotateBone(Bone bone)
+        {
+            if (bone != null)
+            {
+                float rotationAmount = rotationSpeed * Time.deltaTime;
+                bone.Rotation += rotationAmount;
+                skeletonAnimation.Skeleton.UpdateWorldTransform();
+            }
+        }
+     
+        public override IEnumerator SequenceEndGame()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

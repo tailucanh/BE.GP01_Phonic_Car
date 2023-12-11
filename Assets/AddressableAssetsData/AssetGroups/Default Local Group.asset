@@ -23,12 +23,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - BackgroundStart
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c2c5cf801b0e26f4e890a43c59bbad3a
-    m_Address: Assets/DataResources/Prefabs/Scenes/UIStartGame.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - UIStart
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d603584ea9d0d7640b3841486040f30b
     m_Address: Assets/DataResources/Prefabs/Scenes/BoxSelectCar
     m_ReadOnly: 0
@@ -112,6 +106,42 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - JamText
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b637284c2030eb448b9a944c4824adb5
+    m_Address: Assets/DataResources/Prefabs/Entities/SpeedTank
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SpeedTank
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e36df6a99c3115f4e853cb189efe1c62
+    m_Address: Assets/DataResources/Prefabs/Scenes/CongratulationFlags.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CongratulationFlags
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5ee1739a3b37f54b8b5506824661d0e
+    m_Address: Assets/DataResources/Prefabs/Entities/Audiences.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audiences
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 167277871b97ec744b6377585393f53e
+    m_Address: Assets/DataResources/Prefabs/Scenes/LineEndGame.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - LineEndGame
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 660bc6d6631ad2b4884c4cdea1972a60
+    m_Address: Assets/DataResources/Prefabs/Entities/Alphabet/Wig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WigText
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22ca47a5554d531469c7442e77cdd389
+    m_Address: Assets/DataResources/Prefabs/Entities/Alphabet/Pot
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PotText
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 23cde35e85879f64ea6c2957d9d7aed1, type: 2}

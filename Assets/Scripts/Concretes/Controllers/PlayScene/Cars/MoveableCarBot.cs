@@ -4,24 +4,27 @@ using UnityEngine;
 
 namespace Assets.Scripts.Concretes.Controllers
 {
-    internal class MoveableCarBot : MoveableObject
+    public class MoveableCarBot : MoveableObject
     {
-
         public override IEnumerator MoveObject(Vector3 destination, float speedTime)
         {
-
+            Vector3 startPos = transform.position;
             float startTime = Time.time;
-
-            while (Time.time - startTime < speedTime)
+            float distance = Vector3.Distance(startPos, destination);
+            if(distance > 0)
             {
-                float t = (Time.time - startTime) / speedTime;
+                while (Time.time - startTime < speedTime)
+                {
+                    float journeyLength = (Time.time - startTime) * 1.5f;
+                    float fracJourney = journeyLength / distance;
+                    _movingObject.Move(this, destination, Mathf.SmoothStep(0f, 1f, fracJourney));
 
-                transform.position = Vector3.Lerp(transform.position, destination, t);
+                    yield return null;
+                }
 
-                yield return null;
+                transform.position = destination;
             }
-
-            transform.position = destination;
+           
         }
 
         public override IEnumerator ScaleObject(Vector3 toScale, float speedTime)

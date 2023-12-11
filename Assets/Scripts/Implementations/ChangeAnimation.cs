@@ -1,7 +1,5 @@
 ﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.Utilities;
 using Spine.Unity;
-using System;
 
 namespace Assets.Scripts.Implementations
 {

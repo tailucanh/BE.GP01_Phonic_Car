@@ -11,5 +11,9 @@ namespace Assets.Scripts.Enums
         AudioGuidingStart,
         [Description("Nice driving!")]
         AudioNiceDriving,
+        [Description("Item Touch Collect")] 
+        AudioItemTouch,
+        [Description("Collect Item")]
+        AudioCollectItem,
     }
 }

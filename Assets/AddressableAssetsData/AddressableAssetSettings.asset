@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: a8585a144deacda46b86821175f3e104
   m_CachedHash:
     serializedVersion: 2
-    Hash: 829adfb8c8a1a9c427d6314b3b72953b
+    Hash: 205c327a8ac69f7be9e1ea6de54c5ee7
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -104,6 +104,13 @@ MonoBehaviour:
     - HandClick
     - BallText
     - JamText
+    - SpeedTank
+    - CongratulationFlags
+    - Audiences
+    - BoxVocabulary
+    - LineEndGame
+    - WigText
+    - PotText
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 79a0efcde92af8945b497735775e028a, type: 2}

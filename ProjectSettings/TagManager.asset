@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Play
   - Water
   - UI
   - 
@@ -46,4 +46,7 @@ TagManager:
     locked: 0
   - name: Layer 2
     uniqueID: 2795136095
+    locked: 0
+  - name: Layer 3
+    uniqueID: 1858693599
     locked: 0
